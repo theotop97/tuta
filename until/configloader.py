@@ -1,7 +1,16 @@
 import os
 import yaml
 
+'''
+通过yaml文件来读取测试时使用的环境配置
+yaml文件确保要放在主目录下
+
+    yamlName:yaml配置文件的名字
+'''
+
 def loadConfig(yamlName):
-    rootPath = os.path.dirname(os.path.abspath(__file__)).split('until')[0]
+    # 找到config的路径
+    rootPath = os.path.abspath(r"../MyAppiumCode/config")
     yamlPath = os.path.join(rootPath, yamlName)
-    return yaml.load(open(yamlPath, 'r', encoding='utf-8').read(), yaml.FullLoader)
+    return yaml.load(open(yamlPath, 'r', encoding='utf-8').read())
+
