@@ -1,9 +1,0 @@
-platformName : Android
-platformVersion : 5.1.1
-# 可以随便写
-deviceName : emulator-5554
-appPackage : com.android.settings
-appActivity : .Settings
-# 支持unicode键盘，输入中文时需要
-unicodeKeyboard : true
-resetKeyboard : true
