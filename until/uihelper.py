@@ -26,17 +26,7 @@ class UiHelper:
         controlInfo:传入要寻找元素的id或classname或name或根据xpath定位，要求必须为String类型
     '''
     def findElement(self, controlInfo: str):
-        if controlInfo.startswith("//"):
-            element = self._driver.find_element_by_xpath(controlInfo)
-        elif ":id/" in controlInfo or ":string/" in controlInfo:
-            element = self._driver.find_element_by_id(controlInfo)
-        else:
-            try:
-                element = self._driver.find_element_by_name(controlInfo)
-            except:
-                element = self._driver.find_element_by_class_name(controlInfo)
-
-        return element
+        return self.__findElement(controlInfo)
 
     '''
     隐式等待
@@ -55,3 +45,64 @@ class UiHelper:
 
         wd = WebDriverWait(self._driver, time_out, poll_frequency=time_seconds)
         wd.until(lambda x: x.find_element_by_id(element))
+
+    '''
+    在控件中查找其他控件的方法
+        parentElement:父级控件
+        childElementInfo:子空间的id/name/classname/xpath定位方法，要求传入String
+    '''
+    def findElementInParentElement(self, parentElement: webdriver.webelement, childElementInfo: str):
+        if childElementInfo.startswith("//"):
+            element = parentElement.find_element_by_xpath(childElementInfo)
+        elif "/id" in childElementInfo or ":string/":
+            element = parentElement.find_element_by_id(childElementInfo)
+        else:
+            try:
+                element = parentElement.find_element_by_name(childElementInfo)
+            except:
+                element = parentElement.find_element_by_class_name(childElementInfo)
+        return element
+
+    '''
+    寻找元素
+    '''
+    def __findElement(self, elementInfo: str):
+        if elementInfo.startswith("//"):
+            element = self._driver.find_element_by_xpath(elementInfo)
+        elif ":id/" in elementInfo or ":string/" in elementInfo:
+            element = self._driver.find_element_by_id(elementInfo)
+        else:
+            try:
+                element = self._driver.find_element_by_name(elementInfo)
+            except:
+                element = self._driver.find_element_by_class_name(elementInfo)
+        return element
+
+    '''
+    检查元素Enable属性
+        elementInfo:要检查元素的定位信息
+    '''
+    def checkElementIsEnable(self, elementInfo):
+        return self.__checkElementAttribute(elementInfo, "enable")
+
+    '''
+    检查元素clickable属性
+        elementInfo:要检查元素的定位信息
+    '''
+    def checkElementClickable(self, elementInfo):
+        return self.__checkElementAttribute(elementInfo, "clickable")
+
+    '''
+    检查元素checked属性
+        elementInfo:要检查元素的定位信息
+    '''
+    def checkElementIsChecked(self, elementInfo):
+        return self.__checkElementAttribute(elementInfo, "checked")
+
+    '''
+    检查元素属性
+        elementInfo:要检查元素的定位信息
+        attributeName:要检查元素的属性信息
+    '''
+    def __checkElementAttribute(self, elementInfo: str, attributeName: str):
+        return self.findElement(elementInfo).get_attribute(attributeName)
