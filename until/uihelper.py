@@ -106,3 +106,6 @@ class UiHelper:
     '''
     def __checkElementAttribute(self, elementInfo: str, attributeName: str):
         return self.findElement(elementInfo).get_attribute(attributeName)
+
+    def getWebDriver(self):
+        return self._driver
