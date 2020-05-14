@@ -1,3 +1,4 @@
+import os
 import unittest
 
 import ddt
@@ -47,3 +48,13 @@ class Demo4(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+    print("main")
+    suit = unittest.TestSuite()
+    suit.addTest(Demo4("testByExcel"))
+
+    fileName = r"F:\CODE\demo4.html"
+    fp = open(fileName, 'wb')
+
+    reportRunner = HTMLTestRunner.HTMLTestRunner(stream=fp, title=u'测试报告', description=u'用例测试情况')
+    reportRunner.run(suit)
+    fp.close()
