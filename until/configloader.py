@@ -11,6 +11,6 @@ yaml文件确保要放在主目录下
 def loadConfig(yamlName):
     # 找到config的路径
 
-    yamlPath = os.path.abspath(".") + r"/config/"
+    yamlPath = os.path.abspath(".") + r"/config/" + yamlName
     return yaml.load(open(yamlPath, 'r', encoding='utf-8').read())
 
