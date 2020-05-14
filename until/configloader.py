@@ -10,7 +10,7 @@ yaml文件确保要放在主目录下
 
 def loadConfig(yamlName):
     # 找到config的路径
-    rootPath = os.path.abspath(r"../MyAppiumCode/config")
-    yamlPath = os.path.join(rootPath, yamlName)
+
+    yamlPath = os.path.abspath(".") + r"/config/"
     return yaml.load(open(yamlPath, 'r', encoding='utf-8').read())
 

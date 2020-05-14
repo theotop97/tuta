@@ -1,7 +1,7 @@
 import logging
 import os
 
-log_path = os.path.abspath(r"../MyAppiumCode/logs")
+log_path = os.path.abspath(".") + r"/logs/"
 
 
 class Logger:
