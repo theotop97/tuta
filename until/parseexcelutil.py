@@ -5,7 +5,7 @@ from openpyxl import load_workbook
 class ParseExcel:
 
     def __init__(self, excelName, sheetName):
-        excelPath = os.path.abspath(r"../MyAppiumCode/excel/") + r"\\" + excelName
+        excelPath = os.path.abspath(r"../MyAppiumCode/excel/") + excelName
         self.wb = load_workbook(excelPath)
         self.sheet = self.wb[sheetName]
         self.maxRow = self.sheet.max_row
