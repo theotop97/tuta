@@ -18,7 +18,7 @@ class Demo4(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.uh = UiHelper("config.yml")
-        cls.log = Logger(__name__, "demo2.txt")
+        cls.log = Logger(__name__, "tuta.txt")
         print("setUpClass")
         cls.log.getLog().info("setUpClass")
         # cls.pe = ParseExcel("settingsearch.xlsx", "search1")
