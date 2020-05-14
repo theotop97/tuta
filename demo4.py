@@ -26,6 +26,7 @@ class Demo4(unittest.TestCase):
     def setUp(self):
         self.uh.findElement("com.android.settings:id/search").click()
         self.uh.expWait(2, 1, "android:id/search_src_text")
+        print("setUp")
 
     def tearDown(self):
         # self.uh.getWebDriver().reset()
